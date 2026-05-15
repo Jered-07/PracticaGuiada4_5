@@ -16,7 +16,7 @@ public class ProductMapper {
             return null;
         }
 
-        return new ProductDto(product.getName(), product.getDescription(), product.getPrice());
+        return new ProductDto(product.getName(), product.getDescription(), product.getPrice(), product.getResourceID());
     }
 
     public List<ProductDto> toProductDtoList(List<Product> products){
@@ -35,7 +35,7 @@ public class ProductMapper {
             return null;
         }
 
-        return new ProductResponceModel(productDto.name(), productDto.description(), productDto.price());
+        return new ProductResponceModel(productDto.name(), productDto.description(), productDto.price(), productDto.resource_id());
     }
 
     public List<ProductResponceModel> tProductResponceModelList(List<ProductDto> productDtos){

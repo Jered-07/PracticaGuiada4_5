@@ -1,7 +1,8 @@
 package com.example.demo.models;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
-public record ProductResponceModel(String name, String description, BigDecimal price) {
+public record ProductResponceModel(String name, String description, BigDecimal price, UUID resource) {
     
 }
