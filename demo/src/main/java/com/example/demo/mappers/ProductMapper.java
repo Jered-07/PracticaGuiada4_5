@@ -3,10 +3,13 @@ package com.example.demo.mappers;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Component;
+
 import com.example.demo.dtos.ProductDto;
 import com.example.demo.entities.Product;
 import com.example.demo.models.ProductResponceModel;
 
+@Component
 public class ProductMapper {
     public ProductDto toProductDto(Product product){
         if (product == null) {
