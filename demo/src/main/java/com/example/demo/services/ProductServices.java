@@ -27,10 +27,24 @@ public class ProductServices implements IProductServices {
             .name(productRequestDto.getName())
             .description(productRequestDto.getDescription())
             .price(productRequestDto.getPrice())
-            .resourceID(UUID.randomUUID())
+            .resourceId(UUID.randomUUID())
             .build();
 
         return productRepository.addProduct(product);
+    }
+
+    @Override
+    public Product updateProduct(UUID resourceId, ProductRequestDto productDto) {
+        var product = productRepository.findByResourceId(resourceId).orElseThrow(() -> new RuntimeException("Objeto no encontrado"));
+        product.setName(productDto.getName());
+        product.setDescription(productDto.getDescription());
+        product.setPrice(productDto.getPrice());
+        return productRepository.updateProduct(product);
+    }
+
+    @Override
+    public Product getByResourceId(UUID resourceId) {
+        return productRepository.getByResourceID(resourceId);
     }
 
     

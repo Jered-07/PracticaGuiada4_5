@@ -43,7 +43,7 @@ public class Product {
 
    @Column(name = "resource_id", nullable = false, unique = true, length = 36)
    @JdbcTypeCode(SqlTypes.VARCHAR)
-   private UUID resourceID;
+   private UUID resourceId;
    
 
 

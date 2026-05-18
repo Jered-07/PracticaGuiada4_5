@@ -1,6 +1,7 @@
 package com.example.demo.facade;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,6 +32,21 @@ public class ProductFacade implements IProductFacade {
         @Transactional //Es una anotacion que hace un "Todo o nada", es decir que si encuentra un error detiene el proceso y hace un rollback
     public ProductDto addProduct(ProductRequestDto productRequestDto) {
         var entity = productServices.addProduct(productRequestDto);
+        return productMapper.toProductDto(entity);
+    }
+
+
+    @Override
+        @Transactional
+    public ProductDto undateProduct(UUID resourceId, ProductRequestDto productRequestDto) {
+        var entity = productServices.updateProduct(resourceId, productRequestDto);
+        return productMapper.toProductDto(entity);
+    }
+
+
+    @Override
+    public ProductDto getByResourceId(UUID resourceId) {
+        var entity = productServices.getByResourceId(resourceId);
         return productMapper.toProductDto(entity);
     }
     

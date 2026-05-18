@@ -18,7 +18,7 @@ public class ProductMapper {
             return null;
         }
 
-        return new ProductDto(product.getName(), product.getDescription(), product.getPrice(), product.getResourceID());
+        return new ProductDto(product.getName(), product.getDescription(), product.getPrice(), product.getResourceId());
     }
 
     public List<ProductDto> toProductDtoList(List<Product> products){
