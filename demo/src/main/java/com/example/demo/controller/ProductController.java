@@ -5,11 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dtos.ProductDto;
 import com.example.demo.facade.IProductFacade;
 import com.example.demo.mappers.ProductMapper;
+import com.example.demo.models.ProductRequestModel;
 import com.example.demo.models.ProductResponceModel;
 
 @RestController
@@ -24,6 +28,12 @@ public class ProductController {
     @GetMapping
     public ResponseEntity<List<ProductResponceModel>> findAll(){
         return ResponseEntity.ok(productMapper.tProductResponceModelList(productFacade.getAll()));
+    }
+
+    @PostMapping
+    public ProductDto save(@RequestBody ProductRequestModel productRequestModel){
+        var dto =  productMapper.toProductRequestDto(productRequestModel);
+        return productFacade.addProduct(dto);
     }
     
 }
