@@ -12,6 +12,7 @@ public interface IProductFacade {
     ProductDto addProduct(ProductRequestDto productRequestDto);
     ProductDto undateProduct(UUID resourceId, ProductRequestDto productRequestDto);
     ProductDto getByResourceId(UUID resourceId);
+    void removeProduct(UUID resourceId);
 }
 
 //Aqui va lo mismo que en services solo que en vez de ser product es productDto

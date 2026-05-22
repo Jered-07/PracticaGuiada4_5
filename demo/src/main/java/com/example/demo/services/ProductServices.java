@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.Exceptions.ProductNotFoundException;
 import com.example.demo.dtos.ProductRequestDto;
 import com.example.demo.entities.Product;
 import com.example.demo.repositories.ProductRepository;
@@ -35,8 +36,7 @@ public class ProductServices implements IProductServices {
 
     @Override
     public Product updateProduct(UUID resourceId, ProductRequestDto productDto) {
-        var product = productRepository.findByResourceId(resourceId).orElseThrow(() -> new RuntimeException("Objeto no encontrado"));
-        product.setName(productDto.getName());
+        var product = productRepository.findByResourceId(resourceId).orElseThrow(() -> new ProductNotFoundException("Producto no encontrado"));
         product.setDescription(productDto.getDescription());
         product.setPrice(productDto.getPrice());
         return productRepository.updateProduct(product);
@@ -44,7 +44,16 @@ public class ProductServices implements IProductServices {
 
     @Override
     public Product getByResourceId(UUID resourceId) {
-        return productRepository.getByResourceID(resourceId);
+        return productRepository.findByResourceId(resourceId)
+        .orElseThrow(() -> new ProductNotFoundException("Producto no encontrado"));
+    }
+
+    @Override
+    public void removeProduct(UUID resoruceId) {
+        var product = productRepository.findByResourceId(resoruceId)
+        .orElseThrow(()-> new ProductNotFoundException("Producto no encontrado"));
+
+        productRepository.delete(product);
     }
 
     

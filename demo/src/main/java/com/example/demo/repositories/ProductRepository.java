@@ -14,21 +14,24 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 
     Optional<Product> findByResourceId(UUID resourceId);
     
+    //Get
     default List<Product> getAll(){
         return findAll();
     }
 
+    //Post
     default Product addProduct(Product product){
         return save(product);
     }
 
+    //Undate(Put)
     default Product updateProduct(Product product){
         return save(product);
     }
 
-    default Product getByResourceID(UUID resourceId){
-        return this.findByResourceId(resourceId).orElse(null);
-    }
+    
+
+    
 }
 
 

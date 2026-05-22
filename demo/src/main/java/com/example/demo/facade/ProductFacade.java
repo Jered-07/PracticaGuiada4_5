@@ -49,5 +49,11 @@ public class ProductFacade implements IProductFacade {
         var entity = productServices.getByResourceId(resourceId);
         return productMapper.toProductDto(entity);
     }
+
+
+    @Override
+    public void removeProduct(UUID resourceId) {
+        productServices.removeProduct(resourceId);
+    }
     
 }
