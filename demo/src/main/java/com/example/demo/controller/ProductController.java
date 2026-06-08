@@ -21,7 +21,7 @@ import com.example.demo.models.ProductRequestModel;
 import com.example.demo.models.ProductResponceModel;
 
 @RestController
-@RequestMapping("/products")//en esta direccion uno elije el nombre que desea colocarle
+@RequestMapping("/products")
 public class ProductController {
     @Autowired
     private IProductFacade productFacade;
